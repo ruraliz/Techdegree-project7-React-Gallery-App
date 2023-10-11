@@ -1,6 +1,6 @@
 import React from 'react';
 import Photo from './Photo';
-// import NotFound from './NotFound'
+import NotFound from './NotFound'
 
 
 const PhotoContainer = props => { 
@@ -12,15 +12,16 @@ const PhotoContainer = props => {
     return <Photo url= {url} key={image.id} />
   });
   
-  } 
-//   else if (results.length === 0) {
-//     images = <NotFound />
-//   }
-  
+  } else if (props.data.length === 0) {
+    images = <NotFound />
+  }
+
   return(
-    <ul>
-      {images}
-    </ul> 
+    <div className="photo-container">
+        <ul>
+        {images}
+        </ul>
+    </div>
   );
 }
 

@@ -6,9 +6,11 @@ import axios from "axios";
 import PhotoContainer from './components/PhotoContainer'
 import SearchForm from './components/SearchForm';
 import NotFound from './components/NotFound';
-import Photo from './components/Photo';
-import MainLinks from './components/MainLinks';
 import Nav from './components/Nav';
+import Dogs from './components/Dogs';
+import Cats from './components/Cats';
+import Computers from './components/Computers';
+
 
 function App() {
   const [images, setImages] = useState([]);
@@ -43,6 +45,7 @@ function App() {
       });
     return () => { activeFetch = false }
   }, [query]);
+  
   const handleQueryChange = searchText => {
     setQuery(searchText);
   }
@@ -52,19 +55,12 @@ function App() {
       <Nav changeQuery={handleQueryChange}  />
       <Routes>
         <Route path="/" element={<Navigate to="/dogs" replace />} />
-        <Route path="/dogs" element={<MainLinks data={dogs}  loading={loading}/>} />
-        <Route path="/cats" element={<MainLinks data={cats}  loading={loading}/>} />
-        <Route path="/computers" element={<MainLinks data={computers}  loading={loading}/>} />
-        <Route path="/search/:topic" element={<Photo loading={loading} data={images} query={query} changeQuery={handleQueryChange} />} />
+        <Route path="/dogs" element={<Dogs data={dogs} loading={loading} />} />
+        <Route path="/cats" element={<Cats data={cats} loading={loading}/>} />
+        <Route path="/computers" element={<Computers data={computers} loading={loading}/>} />
+        <Route path="/search/:topic" element={<PhotoContainer data={images} changeQuery={handleQueryChange} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <div className="photo-container">
-      {
-        (loading)
-        ? <p>Loading...</p>
-        : <PhotoContainer data={images} />
-      }
-      </div>
     </div>
     
   );

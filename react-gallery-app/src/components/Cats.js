@@ -1,9 +1,10 @@
 import React from 'react'
 import NotFound from './NotFound';
 
-const MainLinks = ({data, loading}) => {
+const Cats = ({data, loading}) => {
 
     let images;
+
     if (loading) {
         images = <p>Loading...</p>;
     } else if (data.length > 0) {
@@ -17,6 +18,7 @@ const MainLinks = ({data, loading}) => {
 
     return (
         <div className="photo-container">
+            <h2>Cats</h2>
             <ul>
                 {images}
             </ul>
@@ -24,4 +26,4 @@ const MainLinks = ({data, loading}) => {
     );
 }
 
-export default MainLinks
+export default Cats

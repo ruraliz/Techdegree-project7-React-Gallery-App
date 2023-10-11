@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 const SearchForm = props => {
   const searchText = useRef(null);
   const navigate = useNavigate();
+  
   const handleSubmit = e => {
     e.preventDefault();
     const searchTerm = searchText.current.value
@@ -22,7 +23,6 @@ const SearchForm = props => {
 
   return (
     <form className="search-form" onSubmit={e => handleSubmit(e)} >
-      <label className="is-hidden" htmlFor="search">Search</label>
       <input type="search" 
              ref={searchText}
              name="search" 
