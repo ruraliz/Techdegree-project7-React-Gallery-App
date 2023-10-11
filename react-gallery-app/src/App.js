@@ -58,7 +58,7 @@ function App() {
         <Route path="/dogs" element={<Dogs data={dogs} loading={loading} />} />
         <Route path="/cats" element={<Cats data={cats} loading={loading}/>} />
         <Route path="/computers" element={<Computers data={computers} loading={loading}/>} />
-        <Route path="/search/:topic" element={<PhotoContainer data={images} changeQuery={handleQueryChange} />} />
+        <Route path="/search/:topic" element={<PhotoContainer loading={loading} data={images} changeQuery={handleQueryChange} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
