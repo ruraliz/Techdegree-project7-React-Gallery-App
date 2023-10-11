@@ -4,7 +4,6 @@ import { useParams } from 'react-router';
 
 
 const PhotoContainer = ({ data, loading, query, changeQuery}) => { 
-//   const results = data;
   const { topic } = useParams
   let images;
   if (loading) {
