@@ -1,24 +1,32 @@
-import React from 'react';
-import Photo from './Photo';
+import React, {useEffect} from 'react';
 import NotFound from './NotFound'
+import { useParams } from 'react-router';
 
 
-const PhotoContainer = props => { 
-  const results = props.data;
+const PhotoContainer = ({ data, loading, query, changeQuery}) => { 
+//   const results = data;
+  const { topic } = useParams
   let images;
-  if (props.loading) {
-    images = <p>Loading...</p>;
-  }else if (results.length > 0) {
-    images = results.map(image => {
+  if (loading) {
+    images = <h2>Loading...</h2>;
+  }else if (data.length > 0) {
+    images = data.map(image => {
     let url=`https://farm${image.farm}.staticflickr.com/${image.server}/${image.id}_${image.secret}_n.jpg`
-    return <Photo url= {url} key={image.id} />
+    return <li key={image.id}><img src={url} alt="" /></li>;
   });
-  } else if (props.data.length === 0) {
+  } else if (data.length === 0) {
     images = <NotFound />
   }
+  useEffect(() => {
+    if (topic) {
+        changeQuery(topic);
+    }
+     // eslint-disable-next-line 
+  }, [topic]);
 
   return(
     <div className="photo-container">
+        <h2>{topic ? topic : query}</h2>
         <ul>
         {images}
         </ul>

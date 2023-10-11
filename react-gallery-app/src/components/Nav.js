@@ -1,27 +1,26 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Nav = props => {
+const Nav = ({ changeQuery })=> {
   const handleNavLinkClick = (tag) => {
-    props.changeQuery(tag);
-    //navigate(`search/${tag}`);
+    changeQuery(tag);
   };
 
   return (
     <nav className="main-nav">
       <ul>
         <li>
-          <NavLink to="/dogs" onClick={() => handleNavLinkClick("dogs")}>
+          <NavLink to="/dogs" onClick={() => handleNavLinkClick('dogs')}>
             Dogs
           </NavLink>
         </li>
         <li>
-          <NavLink to="/cats" onClick={() => handleNavLinkClick("cats")}>
+          <NavLink to="/cats" onClick={() => handleNavLinkClick('cats')}>
             Cats
           </NavLink>
         </li>
         <li>
-          <NavLink to="/computers" onClick={() => handleNavLinkClick("computers")}>
+          <NavLink to="/computers" onClick={() => handleNavLinkClick('computers')}>
             Computers
           </NavLink>
         </li>

@@ -1,21 +1,21 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router';
 
-const SearchForm = props => {
+const SearchForm = ({ changeQuery })=> {
   const searchText = useRef(null);
   const navigate = useNavigate();
-  
+
   const handleSubmit = e => {
     e.preventDefault();
     const searchTerm = searchText.current.value
-    if(searchTerm=== 'cats'){
+    if(searchTerm === 'cats'){
         navigate('/cats');
-    }else if(searchTerm=== 'dogs'){
+    }else if(searchTerm === 'dogs'){
         navigate('/dogs');
-    }else if(searchTerm=== 'computers'){
+    }else if(searchTerm === 'computers'){
         navigate('/computers');
     }else{
-        props.changeQuery(searchTerm );
+        changeQuery(searchTerm );
         navigate(`/search/${searchTerm}`);
     }
     e.currentTarget.reset();
