@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+//NavLink for calling routes to dogs, cats and computers.
 const Nav = ({ changeQuery })=> {
   const handleNavLinkClick = (tag) => {
     changeQuery(tag);
