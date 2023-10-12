@@ -1,8 +1,10 @@
 import React, {useEffect, useState }  from 'react';
 import { Route, Routes, Navigate } from "react-router-dom";
-import apiKey from './components/config';
-import './App.css'
 import axios from "axios";
+//import api key
+import apiKey from './components/config';
+//import components 
+import './App.css'
 import PhotoContainer from './components/PhotoContainer'
 import SearchForm from './components/SearchForm';
 import Nav from './components/Nav';
@@ -15,7 +17,7 @@ function App() {
   const [dogs, setDogs]= useState([]);
   const [cats, setCats]= useState([]);
   const [computers, setComputers]= useState([]);
-  const fetchData = (query) =>{
+  const fetchData = (query) =>{ //fetch data from api and sets response to associated variables 
     setLoading(true);
     let activeFetch = true;
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
@@ -33,17 +35,26 @@ function App() {
           setLoading(false);
         }
       })
-      .catch(error => {
+      .catch(error => { //error logged in console when there is an issue fetching data
         console.log("Error fetching and parsing data", error);
       });
     return () => { activeFetch = false }
   }
-  const handleQueryChange = (searchText) => {
-    setQuery(searchText);
+  const handleQueryChange = (query) => {
+    setQuery(query);
+    fetchData(query);
   };
   useEffect(() => {
-    fetchData(query);
-  }, [query]);
+    if (!dogs.length) {
+      fetchData("dogs");
+    }
+    if(!cats.length){
+      fetchData("cats")
+    }
+    if(!computers.length){
+      fetchData("computers")
+    }
+  }, [dogs.length, cats.length, computers.length,]);
 
   return (
     <div className="App">

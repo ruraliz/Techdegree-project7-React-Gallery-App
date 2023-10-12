@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router';
-
+//returns searched results when the handleSubmit is clicked and navigates to preset routes when dogs, cats or computers are searched. 
 const SearchForm = ({ changeQuery })=> {
   const searchText = useRef(null);
   const navigate = useNavigate();
