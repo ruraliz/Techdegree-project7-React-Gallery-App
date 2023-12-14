@@ -22,7 +22,6 @@ function App() {
     let activeFetch = true;
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
-        console.log(response.data.photos.photo)
         if (activeFetch) {
           if(query === "dogs"){
             setDogs(response.data.photos.photo);
